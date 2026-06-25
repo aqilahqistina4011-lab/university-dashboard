@@ -2,18 +2,69 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>University Dashboard</title>
+    <title>Weather Dashboard</title>
+    <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
 
-    <h1 style="text-align: center; font-family: Arial, sans-serif; margin-top: 20px;">University Dashboard</h1>
+    <h1 style="text-align: center; margin-top: 20px; color: #333;">Live Weather Dashboard</h1>
     
-    <div style="width: 80%; margin: auto;">
+    <!-- Kotak Graf -->
+    <div style="width: 85%; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         <canvas id="chart"></canvas>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+    // Guna API cuaca Open-Meteo (Kuala Lumpur) yang stabil 24/7
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&hourly=temperature_2m")
+    .then(res => {
+        if (!res.ok) throw new Error('API down');
+        return res.json();
+    })
+    .then(data => {
+        // Ambil 7 data waktu dan suhu terawal
+        const labels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]); 
+        const temperatures = data.hourly.temperature_2m.slice(0, 7);
+
+        new Chart(document.getElementById("chart"), {
+            type: "line", // Tukar jadi graf garisan baru cantik untuk cuaca
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Suhu Semasa (°C)",
+                    data: temperatures,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        // Backup data kalau internet/API bermasalah terus tunjuk graf
+        const backupLabels = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"];
+        const backupData = [24, 23, 26, 31, 30, 27];
+        
+        new Chart(document.getElementById("chart"), {
+            type: "line",
+            data: {
+                labels: backupLabels,
+                datasets: [{
+                    label: "Suhu Semasa (°C) - Offline Mode",
+                    data: backupData,
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 2
+                }]
+            }
+        });
+    });
+    </script>
 
 </body>
 </html>
