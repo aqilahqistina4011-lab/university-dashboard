@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>University Dashboard</h1>
+
+<canvas id="chart"></canvas>
+
+<script>
+fetch("https://universities.hipolabs.com/search?country=Malaysia")
+.then(res => res.json())
+.then(data => {
+
+    const labels = data.slice(0,10).map(u => u.name);
+    const values = data.slice(0,10).map(() => 1);
+
+    new Chart(document.getElementById("chart"), {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Universities",
+                data: values
+            }]
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
