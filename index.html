@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 My Cute Weather Dashboard 🌸</title>
+    <title>University Weather Analytics Dashboard</title>
     <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -14,7 +14,7 @@
             background-color: #fff0f5; /* Soft Lavender Blush / Pastel Pink */
             background-image: radial-gradient(#ffe4e1 20%, transparent 20%), radial-gradient(#ffe4e1 20%, transparent 20%);
             background-size: 40px 40px;
-            background-position: 0 0, 20px 20px; /* Corak polka dot comel soft */
+            background-position: 0 0, 20px 20px;
             color: #6b4f5b;
             margin: 0;
             padding: 20px;
@@ -23,14 +23,14 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        /* Header Kartun */
+        /* Header Baru Tanpa Reben & Kawaii */
         .navbar {
             background-color: #ffffff;
             padding: 15px 25px;
             border-radius: 24px;
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0 8px 0px #f3d1dc; /* Shadow tebal ala kartun */
+            box-shadow: 0 8px 0px #f3d1dc;
             border: 3px solid #fbc4d6;
         }
         .navbar h2 {
@@ -149,9 +149,9 @@
 <body>
 
     <div class="container">
-        <!-- Top Nav -->
+        <!-- Top Nav - DAH TUKAR TAJUK AKADEMIK PRO -->
         <div class="navbar">
-            <h2>✨ 🎀 Aqilah's Kawaii Weather Station 🎀 ✨</h2>
+            <h2>📊 Aqilah's Weather Analytics Station 📊</h2>
         </div>
 
         <!-- Main Card -->
@@ -168,9 +168,9 @@
             </div>
         </div>
 
-        <!-- NEW FEATURE: Cute Daily Capsule -->
+        <!-- Cute Daily Capsule - Ditapis sikit ayat biar nampak macam pesan kajian -->
         <div class="quote-box" id="cute-quote">
-            Loading your cute message... 🧠✨
+            Loading analytics metadata...
         </div>
 
         <!-- Stats row -->
@@ -224,26 +224,25 @@
             document.getElementById("stat-wind").innerText = Math.round(data.current.wind_speed_10m) + " km/h";
             document.getElementById("stat-rain").innerText = data.current.rain + " mm";
 
-            // Logik Tukar Avatar Kartun & Pesanan Comel ikut Cuaca
+            // Tukar pesanan supaya seimbang (comel tapi ada isi sains)
             if(data.current.rain > 0) {
                 document.getElementById("hero-avatar").innerText = "🌧️🧸";
                 document.getElementById("hero-condition").innerText = "Drizzle / Rainy";
-                document.getElementById("cute-quote").innerText = "🎀 Oh no, hari ni hujan! Jangan lupa bawa payung comel kau tau! ☔";
+                document.getElementById("cute-quote").innerText = "📊 Analisis: Hari ni hujan. Jangan lupa bawa payung okey! ☔";
             } else if (currentTemp > 30) {
                 document.getElementById("hero-avatar").innerText = "☀️🥰";
                 document.getElementById("hero-condition").innerText = "Super Sunny!";
-                document.getElementById("cute-quote").innerText = "✨ Wah, hari ni cerah gila! Jangan lupa pakai sunscreen & minum air banyak-banyak okey! 🥤";
+                document.getElementById("cute-quote").innerText = "✨ Analisis: Indeks UV tinggi hari ni. Sila pakai sunscreen & minum air secukupnya! 🥤";
             } else {
                 document.getElementById("hero-avatar").innerText = "☁️🐰";
                 document.getElementById("hero-condition").innerText = "Cloudy / Cozy";
-                document.getElementById("cute-quote").innerText = "🌸 Cuaca hari ni macam best je, sangat cozy untuk sambung tidur... eh silap, sambung belajar! 📚";
+                document.getElementById("cute-quote").innerText = "🌸 Analisis: Cuaca mendung dan redup, sangat kondusif untuk sesi pembelajaran! 📚";
             }
 
             const jamLabels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]);
             const dataSuhu = data.hourly.temperature_2m.slice(0, 7);
             const dataHumidity = data.hourly.relative_humidity_2m.slice(0, 7);
 
-            // Graf 1: Soft Strawberry Pink Line Chart
             if (tempChartInstance) tempChartInstance.destroy();
             tempChartInstance = new Chart(document.getElementById("tempChart"), {
                 type: "line",
@@ -270,7 +269,6 @@
                 }
             });
 
-            // Graf 2: Lavender Purple Bar Chart
             if (humidityChartInstance) humidityChartInstance.destroy();
             humidityChartInstance = new Chart(document.getElementById("humidityChart"), {
                 type: "bar",
@@ -294,7 +292,7 @@
                 }
             });
         })
-        .catch(err => console.error("Error muat data comel:", err));
+        .catch(err => console.error("Error:", err));
     }
 
     dapatkanDataCuaca();
