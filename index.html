@@ -2,13 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Weather Dashboard</title>
+    <title>University Weather Research Dashboard</title>
     <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
 
-    <h1 style="text-align: center; margin-top: 20px; color: #333;">Live Weather Dashboard</h1>
+    <!-- Tukar tajuk kat sini supaya ngam dengan nama link university -->
+    <h1 style="text-align: center; margin-top: 20px; color: #333;">Malaysian University Weather Research Dashboard</h1>
+    <p style="text-align: center; color: #666; margin-top: -10px;">Kampus: Universiti Malaya (UM) & Lembah Klang</p>
     
     <!-- Kotak Graf -->
     <div style="width: 85%; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -16,26 +18,25 @@
     </div>
 
     <script>
-    // Guna API cuaca Open-Meteo (Kuala Lumpur) yang stabil 24/7
     fetch("https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&hourly=temperature_2m")
     .then(res => {
         if (!res.ok) throw new Error('API down');
         return res.json();
     })
     .then(data => {
-        // Ambil 7 data waktu dan suhu terawal
         const labels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]); 
         const temperatures = data.hourly.temperature_2m.slice(0, 7);
 
         new Chart(document.getElementById("chart"), {
-            type: "line", // Tukar jadi graf garisan baru cantik untuk cuaca
+            type: "line", 
             data: {
                 labels: labels,
                 datasets: [{
-                    label: "Suhu Semasa (°C)",
+                    // Tukar nama label supaya nampak macam kajian akademik universiti
+                    label: "Suhu Sekasa di Sekitar Kampus (°C)",
                     data: temperatures,
-                    backgroundColor: "rgba(255, 99, 132, 0.2)",
-                    borderColor: "rgba(255, 99, 132, 1)",
+                    backgroundColor: "rgba(54, 162, 235, 0.2)", // Tukar biru tulisan universiti
+                    borderColor: "rgba(54, 162, 235, 1)",
                     borderWidth: 2,
                     tension: 0.3
                 }]
@@ -47,16 +48,15 @@
     })
     .catch(err => {
         console.error("Error:", err);
-        // Backup data kalau internet/API bermasalah terus tunjuk graf
-        const backupLabels = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"];
-        const backupData = [24, 23, 26, 31, 30, 27];
+        const backupLabels = ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"];
+        const backupData = [26, 28, 31, 32, 30, 28];
         
         new Chart(document.getElementById("chart"), {
             type: "line",
             data: {
                 labels: backupLabels,
                 datasets: [{
-                    label: "Suhu Semasa (°C) - Offline Mode",
+                    label: "Suhu Kampus (°C) - Offline Mode",
                     data: backupData,
                     borderColor: "rgba(54, 162, 235, 1)",
                     borderWidth: 2
