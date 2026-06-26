@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Weather Analytics Dashboard</title>
+    <title>Aqilah Qistina's Weather Station</title>
     <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght=500;700&display=swap');
         
         body {
             font-family: 'Quicksand', 'Comic Sans MS', sans-serif;
@@ -23,7 +23,7 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        /* Header Baru Tanpa Reben & Kawaii */
+        /* Header Baru Dengan Nama Penuh Kau */
         .navbar {
             background-color: #ffffff;
             padding: 15px 25px;
@@ -39,7 +39,7 @@
             color: #ff6b8b;
         }
         
-        /* Main Hero Card Cute */
+        /* Main Hero Card */
         .hero-card {
             background-color: #ffffff;
             padding: 30px;
@@ -149,9 +149,9 @@
 <body>
 
     <div class="container">
-        <!-- Top Nav - DAH TUKAR TAJUK AKADEMIK PRO -->
+        <!-- Top Nav - DAH TUKAR JADI NAMA PENUH KAU -->
         <div class="navbar">
-            <h2>📊 Aqilah's Weather Analytics Station 📊</h2>
+            <h2>📊 Aqilah Qistina's Weather Station 📊</h2>
         </div>
 
         <!-- Main Card -->
@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <!-- Cute Daily Capsule - Ditapis sikit ayat biar nampak macam pesan kajian -->
+        <!-- Cute Daily Capsule -->
         <div class="quote-box" id="cute-quote">
             Loading analytics metadata...
         </div>
@@ -224,7 +224,6 @@
             document.getElementById("stat-wind").innerText = Math.round(data.current.wind_speed_10m) + " km/h";
             document.getElementById("stat-rain").innerText = data.current.rain + " mm";
 
-            // Tukar pesanan supaya seimbang (comel tapi ada isi sains)
             if(data.current.rain > 0) {
                 document.getElementById("hero-avatar").innerText = "🌧️🧸";
                 document.getElementById("hero-condition").innerText = "Drizzle / Rainy";
