@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            background-color: #06080c; /* Hitam pekat Cyber */
+            color: #e2e8f0;
             margin: 0;
             padding: 20px;
         }
@@ -20,50 +20,54 @@
         }
         /* Top Navigation Bar */
         .navbar {
-            background-color: #161c2a;
+            background-color: #0f131a; /* Kad gelap */
             padding: 15px 25px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 255, 157, 0.1); /* Garis halus hijau neon */
         }
         .navbar h2 {
             margin: 0;
             font-size: 1.4rem;
-            color: #ff4a85;
+            color: #00ff9d; /* Hijau Neon */
         }
         .navbar span {
             font-size: 0.9rem;
-            color: #9ca3af;
+            color: #00d2ff; /* Biru Elektrik */
+            font-weight: bold;
         }
 
         /* Main Hero Card */
         .hero-card {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #111622 0%, #080b11 100%);
             padding: 30px;
             border-radius: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border: 1px solid rgba(0, 210, 255, 0.1);
         }
         .hero-main h1 {
             font-size: 3.5rem;
             margin: 0;
             display: inline-block;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
         .hero-main h1 span {
             font-size: 1.5rem;
             vertical-align: super;
-            color: #9ca3af;
+            color: #00d2ff;
         }
         .hero-location {
             font-size: 1.1rem;
-            color: #9ca3af;
+            color: #94a3b8;
             margin-top: 5px;
         }
         .hero-status {
@@ -72,12 +76,13 @@
         .hero-status .condition {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #ff4a85;
+            color: #00ff9d; /* Hijau Neon */
             margin: 0;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
         }
         .hero-status .updated-time {
             font-size: 0.85rem;
-            color: #6b7280;
+            color: #64748b;
             margin-top: 5px;
         }
 
@@ -89,20 +94,21 @@
             margin-bottom: 25px;
         }
         .stat-card {
-            background-color: #161c2a;
+            background-color: #0f131a;
             padding: 20px;
             border-radius: 14px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .stat-card h3 {
             font-size: 1.6rem;
             margin: 0 0 5px 0;
-            color: #fff;
+            color: #00d2ff; /* Angka biru elektrik */
         }
         .stat-card p {
             font-size: 0.75rem;
-            color: #9ca3af;
+            color: #64748b;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin: 0;
@@ -115,15 +121,15 @@
             gap: 20px;
         }
         .chart-box {
-            background-color: #161c2a;
+            background-color: #0f131a;
             padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.02);
         }
         .chart-box h4 {
             margin: 0 0 20px 0;
-            color: #9ca3af;
+            color: #94a3b8;
             font-size: 1rem;
             display: flex;
             align-items: center;
@@ -142,8 +148,8 @@
     <div class="container">
         <!-- Top Nav -->
         <div class="navbar">
-            <h2>🏫 University Weather Pro</h2>
-            <span id="refresh-badge">🔄 Auto-Update Active</span>
+            <h2>🏫 University Weather Research Studio</h2>
+            <span id="refresh-badge">⚡ Live Sync Enabled</span>
         </div>
 
         <!-- Main Card -->
@@ -155,8 +161,8 @@
                 <div class="hero-location">📍 Universiti Malaya, Kuala Lumpur</div>
             </div>
             <div class="hero-status">
-                <p class="condition" id="hero-condition">Drizzle</p>
-                <p class="updated-time" id="live-clock">Last updated: --:--</p>
+                <p class="condition" id="hero-condition">Loading...</p>
+                <p class="updated-time" id="live-clock">Last sync: --:--</p>
             </div>
         </div>
 
@@ -175,11 +181,11 @@
                 <p>Precipitation</p>
             </div>
             <div class="stat-card">
-                <h3>3.14° N</h3>
+                <h3 style="color: #fff;">3.14° N</h3>
                 <p>Latitude</p>
             </div>
             <div class="stat-card">
-                <h3>101.69° E</h3>
+                <h3 style="color: #fff;">101.69° E</h3>
                 <p>Longitude</p>
             </div>
         </div>
@@ -187,11 +193,11 @@
         <!-- Charts Row -->
         <div class="charts-grid">
             <div class="chart-box">
-                <h4>📈 Temperature Trend</h4>
+                <h4>📈 Temperature Analytics</h4>
                 <canvas id="tempChart"></canvas>
             </div>
             <div class="chart-box">
-                <h4>💧 Humidity Levels</h4>
+                <h4>💧 Humidity Metrics</h4>
                 <canvas id="humidityChart"></canvas>
             </div>
         </div>
@@ -202,34 +208,29 @@
     let humidityChartInstance = null;
 
     function dapatkanDataCuaca() {
-        // Ambil data cuaca live berserta forecast & current stats
         fetch("https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FKuala_Lumpur")
         .then(res => res.json())
         .then(data => {
-            // 1. Set data kad utama
             const currentTemp = Math.round(data.current.temperature_2m);
             document.getElementById("hero-temp").innerText = currentTemp;
             document.getElementById("stat-humidity").innerText = data.current.relative_humidity_2m + "%";
             document.getElementById("stat-wind").innerText = Math.round(data.current.wind_speed_10m) + " km/h";
             document.getElementById("stat-rain").innerText = data.current.rain + " mm";
 
-            // Set kondisi cuaca ringkas berdasarkan hujan
             if(data.current.rain > 0) {
-                document.getElementById("hero-condition").innerText = "Rainy / Drizzle";
+                document.getElementById("hero-condition").innerText = "Drizzle / Rain";
             } else {
-                document.getElementById("hero-condition").innerText = currentTemp > 30 ? "Sunny / Clear" : "Cloudy";
+                document.getElementById("hero-condition").innerText = currentTemp > 30 ? "Clear Sky" : "Cloudy";
             }
 
-            // Kemas kini jam kemas kini terakhir
             const masaSekarang = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-            document.getElementById("live-clock").innerText = "Last updated: " + masaSekarang;
+            document.getElementById("live-clock").innerText = "Last sync: " + masaSekarang;
 
-            // 2. Sediakan label waktu untuk Graf (Ambil 7 jam terawal)
             const jamLabels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]);
             const dataSuhu = data.hourly.temperature_2m.slice(0, 7);
             const dataHumidity = data.hourly.relative_humidity_2m.slice(0, 7);
 
-            // 3. Render Graf Suhu (Pink/Neon Line Chart)
+            // Graf 1: Hijau Neon Line Chart
             if (tempChartInstance) tempChartInstance.destroy();
             tempChartInstance = new Chart(document.getElementById("tempChart"), {
                 type: "line",
@@ -238,10 +239,10 @@
                     datasets: [{
                         label: "Temperature (°C)",
                         data: dataSuhu,
-                        borderColor: "#ff4a85",
-                        backgroundColor: "rgba(255, 74, 133, 0.1)",
+                        borderColor: "#00ff9d",
+                        backgroundColor: "rgba(0, 255, 157, 0.05)",
                         borderWidth: 3,
-                        pointBackgroundColor: "#ff4a85",
+                        pointBackgroundColor: "#00ff9d",
                         pointRadius: 4,
                         tension: 0.4,
                         fill: true
@@ -251,13 +252,13 @@
                     responsive: true,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { grid: { color: "rgba(255,255,255,0.05)" }, ticks: { color: "#9ca3af" } },
-                        x: { grid: { display: false }, ticks: { color: "#9ca3af" } }
+                        y: { grid: { color: "rgba(255,255,255,0.03)" }, ticks: { color: "#64748b" } },
+                        x: { grid: { display: false }, ticks: { color: "#64748b" } }
                     }
                 }
             });
 
-            // 4. Render Graf Kelembapan (Ungu/Pink Bar Chart)
+            // Graf 2: Biru Elektrik Bar Chart
             if (humidityChartInstance) humidityChartInstance.destroy();
             humidityChartInstance = new Chart(document.getElementById("humidityChart"), {
                 type: "bar",
@@ -266,8 +267,8 @@
                     datasets: [{
                         label: "Relative Humidity (%)",
                         data: dataHumidity,
-                        backgroundColor: "rgba(147, 51, 234, 0.6)",
-                        borderColor: "#9333ea",
+                        backgroundColor: "rgba(0, 210, 255, 0.6)",
+                        borderColor: "#00d2ff",
                         borderWidth: 1,
                         borderRadius: 6
                     }]
@@ -276,19 +277,17 @@
                     responsive: true,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { grid: { color: "rgba(255,255,255,0.05)" }, ticks: { color: "#9ca3af" } },
-                        x: { grid: { display: false }, ticks: { color: "#9ca3af" } }
+                        y: { grid: { color: "rgba(255,255,255,0.03)" }, ticks: { color: "#64748b" } },
+                        x: { grid: { display: false }, ticks: { color: "#64748b" } }
                     }
                 }
             });
         })
-        .catch(err => console.error("Error muat data premium:", err));
+        .catch(err => console.error("Error muat data:", err));
     }
 
-    // Jalankan terus permulaan
     dapatkanDataCuaca();
-    // Auto-refresh setiap 5 minit
-    setInterval(dapatkanDataCuaca, 300000);
+    setInterval(dapatkanDataCuaca, 300000); // Auto-update 5 minit
     </script>
 </body>
 </html>
