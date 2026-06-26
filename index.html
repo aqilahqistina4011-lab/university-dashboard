@@ -3,263 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Eco-Weather Dashboard</title>
+    <title>University Weather Research Dashboard</title>
     <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0b0f19;
-            color: #ffffff;
+            color: #f3f4f6;
             margin: 0;
-            padding: 30px 20px;
+            padding: 20px;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        /* Header & Dropdown */
-        .header-panel {
-            background: #161d2a;
-            padding: 20px;
+        /* Top Navigation Bar */
+        .navbar {
+            background-color: #161c2a;
+            padding: 15px 25px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-        .header-panel h1 {
+        .navbar h2 {
             margin: 0;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #ff4a85;
         }
-        select {
-            background: #222b3e;
-            color: white;
-            border: 1px solid #3b4a6b;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            outline: none;
+        .navbar span {
+            font-size: 0.9rem;
+            color: #9ca3af;
         }
-        /* Main Info Card */
-        .main-weather-card {
-            background: #161d2a;
+
+        /* Main Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             padding: 30px;
             border-radius: 16px;
-            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .temp-display h2 {
+        .hero-main h1 {
             font-size: 3.5rem;
             margin: 0;
-            color: #ffffff;
+            display: inline-block;
         }
-        .temp-display p {
-            margin: 5px 0 0 0;
-            color: #a0aec0;
+        .hero-main h1 span {
+            font-size: 1.5rem;
+            vertical-align: super;
+            color: #9ca3af;
+        }
+        .hero-location {
             font-size: 1.1rem;
+            color: #9ca3af;
+            margin-top: 5px;
         }
-        .weather-status {
+        .hero-status {
             text-align: right;
         }
-        .weather-status h3 {
+        .hero-status .condition {
             font-size: 1.8rem;
+            font-weight: bold;
             color: #ff4a85;
             margin: 0;
         }
-        .weather-status p {
-            color: #718096;
-            margin: 5px 0 0 0;
-            font-size: 0.9rem;
+        .hero-status .updated-time {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-top: 5px;
         }
-        /* Small Grid Cards */
-        .info-grid {
-            display: flex;
-            gap: 20px;
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             margin-bottom: 25px;
         }
-        .small-card {
-            flex: 1;
-            background: #161d2a;
+        .stat-card {
+            background-color: #161c2a;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 14px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .small-card h4 {
-            margin: 0 0 10px 0;
-            color: #718096;
-            font-size: 0.9rem;
+        .stat-card h3 {
+            font-size: 1.6rem;
+            margin: 0 0 5px 0;
+            color: #fff;
+        }
+        .stat-card p {
+            font-size: 0.75rem;
+            color: #9ca3af;
             text-transform: uppercase;
-        }
-        .small-card p {
+            letter-spacing: 1px;
             margin: 0;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #36a2eb;
         }
-        /* Charts Section */
-        .charts-row {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+
+        /* Charts Layout */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
         }
-        .chart-container {
-            flex: 1;
-            min-width: 450px;
-            background: #161d2a;
+        .chart-box {
+            background-color: #161c2a;
             padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .chart-container h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #a0aec0;
+        .chart-box h4 {
+            margin: 0 0 20px 0;
+            color: #9ca3af;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .charts-grid { grid-template-columns: 1fr; }
+            .hero-card { flex-direction: column; text-align: center; gap: 20px; }
+            .hero-status { text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Top Navigation / Selector -->
-        <div class="header-panel">
-            <h1>🎓 Uni-Weather Pro Dashboard</h1>
-            <select id="uni-selector" onchange="tukarUniversiti()">
-                <option value="um">Universiti Malaya (UM) - KL</option>
-                <option value="utm">Universiti Teknologi Malaysia (UTM) - Johor</option>
-                <option value="ukm">Universiti Kebangsaan Malaysia (UKM) - Bangi</option>
-                <option value="upm">Universiti Putra Malaysia (UPM) - Serdang</option>
-                <option value="usm">Universiti Sains Malaysia (USM) - Penang</option>
-                <option value="uitm">Universiti Teknologi MARA (UiTM) - Shah Alam</option>
-            </select>
+        <!-- Top Nav -->
+        <div class="navbar">
+            <h2>🏫 University Weather Pro</h2>
+            <span id="refresh-badge">🔄 Auto-Update Active</span>
         </div>
 
-        <!-- Main Real-time Card -->
-        <div class="main-weather-card">
-            <div class="temp-display">
-                <h2 id="live-temp">--°C</h2>
-                <p id="live-campus">📍 Universiti Malaya (UM)</p>
+        <!-- Main Card -->
+        <div class="hero-card">
+            <div>
+                <div class="hero-main">
+                    <h1 id="hero-temp">--</h1><h1><span>°C</span></h1>
+                </div>
+                <div class="hero-location">📍 Universiti Malaya, Kuala Lumpur</div>
             </div>
-            <div class="weather-status">
-                <h3 id="weather-text">Data Live</h3>
-                <p id="update-time">Loading...</p>
+            <div class="hero-status">
+                <p class="condition" id="hero-condition">Drizzle</p>
+                <p class="updated-time" id="live-clock">Last updated: --:--</p>
             </div>
         </div>
 
-        <!-- Extra Details Grid -->
-        <div class="info-grid">
-            <div class="small-card">
-                <h4>Humidity Semasa</h4>
-                <p id="live-humidity">--%</p>
+        <!-- Stats row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="stat-humidity">--%</h3>
+                <p>Humidity</p>
             </div>
-            <div class="small-card">
-                <h4>Kelajuan Angin</h4>
-                <p id="live-wind">-- km/h</p>
+            <div class="stat-card">
+                <h3 id="stat-wind">-- km/h</h3>
+                <p>Wind Speed</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-rain">-- mm</h3>
+                <p>Precipitation</p>
+            </div>
+            <div class="stat-card">
+                <h3>3.14° N</h3>
+                <p>Latitude</p>
+            </div>
+            <div class="stat-card">
+                <h3>101.69° E</h3>
+                <p>Longitude</p>
             </div>
         </div>
 
-        <!-- Two Charts Side-by-Side -->
-        <div class="charts-row">
-            <div class="chart-container">
-                <h3>📈 Temperature Trend (Suhu 24 Jam)</h3>
+        <!-- Charts Row -->
+        <div class="charts-grid">
+            <div class="chart-box">
+                <h4>📈 Temperature Trend</h4>
                 <canvas id="tempChart"></canvas>
             </div>
-            <div class="chart-container">
-                <h3>💧 Humidity Levels (Kelembapan 24 Jam)</h3>
+            <div class="chart-box">
+                <h4>💧 Humidity Levels</h4>
                 <canvas id="humidityChart"></canvas>
             </div>
         </div>
     </div>
 
     <script>
-    // Koordinat GPS Kampus Utama Universiti di Malaysia
-    const koordinatUni = {
-        um: { nama: "Universiti Malaya (UM)", lat: 3.1147, lon: 101.6602 },
-        utm: { nama: "Universiti Teknologi Malaysia (UTM)", lat: 1.5610, lon: 103.6378 },
-        ukm: { nama: "Universiti Kebangsaan Malaysia (UKM)", lat: 2.9289, lon: 101.7802 },
-        upm: { nama: "Universiti Putra Malaysia (UPM)", lat: 2.9996, lon: 101.7232 },
-        usm: { nama: "Universiti Sains Malaysia (USM)", lat: 5.3557, lon: 100.3015 },
-        uitm: { nama: "Universiti Teknologi MARA (UiTM)", lat: 3.0696, lon: 101.5037 }
-    };
+    let tempChartInstance = null;
+    let humidityChartInstance = null;
 
-    let chartSuhu = null;
-    let chartHumidity = null;
-
-    function muatDataCuaca(kodUni) {
-        const uni = koordinatUni[kodUni];
-        document.getElementById("live-campus").innerText = "📍 " + uni.nama;
-
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${uni.lat}&longitude=${uni.lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FSingapore`;
-
-        fetch(url)
+    function dapatkanDataCuaca() {
+        // Ambil data cuaca live berserta forecast & current stats
+        fetch("https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FKuala_Lumpur")
         .then(res => res.json())
         .then(data => {
-            // Update Teks Atas Kad
-            document.getElementById("live-temp").innerText = Math.round(data.current.temperature_2m) + "°C";
-            document.getElementById("live-humidity").innerText = data.current.relative_humidity_2m + "%";
-            document.getElementById("live-wind").innerText = data.current.wind_speed_10m + " km/h";
-            document.getElementById("weather-text").innerText = data.current.temperature_2m > 30 ? "Cuaca Panas" : "Redup/Selesa";
-            
-            const waktuSekarang = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            document.getElementById("update-time").innerText = "Kemas kini pada " + waktuSekarang;
+            // 1. Set data kad utama
+            const currentTemp = Math.round(data.current.temperature_2m);
+            document.getElementById("hero-temp").innerText = currentTemp;
+            document.getElementById("stat-humidity").innerText = data.current.relative_humidity_2m + "%";
+            document.getElementById("stat-wind").innerText = Math.round(data.current.wind_speed_10m) + " km/h";
+            document.getElementById("stat-rain").innerText = data.current.rain + " mm";
 
-            // Proses Data Graf (Ambil 8 jam pertama untuk paparan cun)
-            const labels = data.hourly.time.slice(0, 8).map(t => t.split("T")[1]);
-            const tempData = data.hourly.temperature_2m.slice(0, 8);
-            const humData = data.hourly.relative_humidity_2m.slice(0, 8);
+            // Set kondisi cuaca ringkas berdasarkan hujan
+            if(data.current.rain > 0) {
+                document.getElementById("hero-condition").innerText = "Rainy / Drizzle";
+            } else {
+                document.getElementById("hero-condition").innerText = currentTemp > 30 ? "Sunny / Clear" : "Cloudy";
+            }
 
-            // Ganti Graf Suhu (Pink Neon)
-            if (chartSuhu) chartSuhu.destroy();
-            chartSuhu = new Chart(document.getElementById("tempChart"), {
-                type: 'line',
+            // Kemas kini jam kemas kini terakhir
+            const masaSekarang = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+            document.getElementById("live-clock").innerText = "Last updated: " + masaSekarang;
+
+            // 2. Sediakan label waktu untuk Graf (Ambil 7 jam terawal)
+            const jamLabels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]);
+            const dataSuhu = data.hourly.temperature_2m.slice(0, 7);
+            const dataHumidity = data.hourly.relative_humidity_2m.slice(0, 7);
+
+            // 3. Render Graf Suhu (Pink/Neon Line Chart)
+            if (tempChartInstance) tempChartInstance.destroy();
+            tempChartInstance = new Chart(document.getElementById("tempChart"), {
+                type: "line",
                 data: {
-                    labels: labels,
+                    labels: jamLabels,
                     datasets: [{
-                        label: 'Suhu (°C)',
-                        data: tempData,
-                        borderColor: '#ff4a85',
-                        backgroundColor: 'rgba(255, 74, 133, 0.1)',
+                        label: "Temperature (°C)",
+                        data: dataSuhu,
+                        borderColor: "#ff4a85",
+                        backgroundColor: "rgba(255, 74, 133, 0.1)",
                         borderWidth: 3,
+                        pointBackgroundColor: "#ff4a85",
+                        pointRadius: 4,
                         tension: 0.4,
                         fill: true
                     }]
                 },
-                options: { responsive: true, scales: { x: { grid: { display: false } }, y: { grid: { color: '#222b3e' } } } }
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: "rgba(255,255,255,0.05)" }, ticks: { color: "#9ca3af" } },
+                        x: { grid: { display: false }, ticks: { color: "#9ca3af" } }
+                    }
+                }
             });
 
-            // Ganti Graf Kelembapan (Bar Biru/Pink Combo)
-            if (chartHumidity) chartHumidity.destroy();
-            chartHumidity = new Chart(document.getElementById("humidityChart"), {
-                type: 'bar',
+            // 4. Render Graf Kelembapan (Ungu/Pink Bar Chart)
+            if (humidityChartInstance) humidityChartInstance.destroy();
+            humidityChartInstance = new Chart(document.getElementById("humidityChart"), {
+                type: "bar",
                 data: {
-                    labels: labels,
+                    labels: jamLabels,
                     datasets: [{
-                        label: 'Relative Humidity (%)',
-                        data: humData,
-                        backgroundColor: '#36a2eb',
+                        label: "Relative Humidity (%)",
+                        data: dataHumidity,
+                        backgroundColor: "rgba(147, 51, 234, 0.6)",
+                        borderColor: "#9333ea",
+                        borderWidth: 1,
                         borderRadius: 6
                     }]
                 },
-                options: { responsive: true, scales: { x: { grid: { display: false } }, y: { grid: { color: '#222b3e' } } } }
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: "rgba(255,255,255,0.05)" }, ticks: { color: "#9ca3af" } },
+                        x: { grid: { display: false }, ticks: { color: "#9ca3af" } }
+                    }
+                }
             });
         })
-        .catch(err => console.error("Ralat API:", err));
+        .catch(err => console.error("Error muat data premium:", err));
     }
 
-    function tukarUniversiti() {
-        const pilihan = document.getElementById("uni-selector").value;
-        muatDataCuaca(pilihan);
-    }
-
-    // Jalankan automatik untuk UM masa mula buka website
-    muatDataCuaca("um");
+    // Jalankan terus permulaan
+    dapatkanDataCuaca();
+    // Auto-refresh setiap 5 minit
+    setInterval(dapatkanDataCuaca, 300000);
     </script>
 </body>
 </html>
