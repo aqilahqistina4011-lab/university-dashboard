@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqilah Qistina's Weather Station</title>
+    <title>University Weather Analytics Dashboard</title>
     <!-- Muat turun Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -23,7 +23,6 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        /* Header Baru Dengan Nama Penuh Kau */
         .navbar {
             background-color: #ffffff;
             padding: 15px 25px;
@@ -39,7 +38,6 @@
             color: #ff6b8b;
         }
         
-        /* Main Hero Card */
         .hero-card {
             background-color: #ffffff;
             padding: 30px;
@@ -76,7 +74,6 @@
             margin: 0;
         }
         
-        /* Quote Box Feature */
         .quote-box {
             background-color: #fff9db;
             border: 3px dashed #fcc419;
@@ -89,7 +86,6 @@
             color: #927e16;
         }
 
-        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -120,7 +116,6 @@
             font-weight: bold;
         }
 
-        /* Charts Layout */
         .charts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -149,18 +144,18 @@
 <body>
 
     <div class="container">
-        <!-- Top Nav - DAH TUKAR JADI NAMA PENUH KAU -->
+        <!-- Top Nav -->
         <div class="navbar">
-            <h2>📊 Aqilah Qistina's Weather Station 📊</h2>
+            <h2>📊 Aqilah's Weather Analytics Station 📊</h2>
         </div>
 
-        <!-- Main Card -->
+        <!-- Main Card (LOKASI DAH TUKAR JADI PSAS) -->
         <div class="hero-card">
             <div>
                 <div class="hero-main">
                     <h1 id="hero-temp">--</h1><h1><span>°C</span></h1>
                 </div>
-                <div class="hero-location">📍 Universiti Malaya, KL</div>
+                <div class="hero-location">📍 Politeknik Sultan Azlan Shah, Perak</div>
             </div>
             <div class="hero-status">
                 <p class="condition" id="hero-avatar">🧸</p>
@@ -173,7 +168,7 @@
             Loading analytics metadata...
         </div>
 
-        <!-- Stats row -->
+        <!-- Stats row (KOORDINAT DAH TUKAR JADI BEHRANG) -->
         <div class="stats-grid">
             <div class="stat-card pink-shadow">
                 <h3 id="stat-humidity">--%</h3>
@@ -188,11 +183,11 @@
                 <p>🌧️ Rain</p>
             </div>
             <div class="stat-card">
-                <h3 style="color: #4db6ac;">3.14° N</h3>
+                <h3 style="color: #4db6ac;">3.68° N</h3>
                 <p>🗺️ Latitude</p>
             </div>
             <div class="stat-card">
-                <h3 style="color: #4db6ac;">101.69° E</h3>
+                <h3 style="color: #4db6ac;">101.44° E</h3>
                 <p>🗺️ Longitude</p>
             </div>
         </div>
@@ -215,7 +210,8 @@
     let humidityChartInstance = null;
 
     function dapatkanDataCuaca() {
-        fetch("https://api.open-meteo.com/v1/forecast?latitude=3.14&longitude=101.69&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FKuala_Lumpur")
+        // COORDINATES UPDATED TO PSAS: latitude=3.68&longitude=101.44
+        fetch("https://api.open-meteo.com/v1/forecast?latitude=3.68&longitude=101.44&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FKuala_Lumpur")
         .then(res => res.json())
         .then(data => {
             const currentTemp = Math.round(data.current.temperature_2m);
@@ -227,15 +223,15 @@
             if(data.current.rain > 0) {
                 document.getElementById("hero-avatar").innerText = "🌧️🧸";
                 document.getElementById("hero-condition").innerText = "Drizzle / Rainy";
-                document.getElementById("cute-quote").innerText = "📊 Analisis: Hari ni hujan. Jangan lupa bawa payung okey! ☔";
+                document.getElementById("cute-quote").innerText = "📊 Analisis: Behrang tengah hujan ni. Jangan lupa bawa payung pergi kelas okey! ☔";
             } else if (currentTemp > 30) {
                 document.getElementById("hero-avatar").innerText = "☀️🥰";
                 document.getElementById("hero-condition").innerText = "Super Sunny!";
-                document.getElementById("cute-quote").innerText = "✨ Analisis: Indeks UV tinggi hari ni. Sila pakai sunscreen & minum air secukupnya! 🥤";
+                document.getElementById("cute-quote").innerText = "✨ Analisis: Kawasan PSAS agak panas sekarang. Sila pakai sunscreen & minum air secukupnya! 🥤";
             } else {
                 document.getElementById("hero-avatar").innerText = "☁️🐰";
                 document.getElementById("hero-condition").innerText = "Cloudy / Cozy";
-                document.getElementById("cute-quote").innerText = "🌸 Analisis: Cuaca mendung dan redup, sangat kondusif untuk sesi pembelajaran! 📚";
+                document.getElementById("cute-quote").innerText = "🌸 Analisis: Cuaca sekitar kampus redup dan redup, sangat kondusif untuk sesi pembelajaran! 📚";
             }
 
             const jamLabels = data.hourly.time.slice(0, 7).map(t => t.split("T")[1]);
