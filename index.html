@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #06080c; /* Hitam pekat Cyber */
-            color: #e2e8f0;
+            background-color: #f0f4f1; /* Soft Pastel Matcha Green Background */
+            color: #2d3a2e; /* Deep Matcha Brown/Green text */
             margin: 0;
             padding: 20px;
         }
@@ -20,54 +20,56 @@
         }
         /* Top Navigation Bar */
         .navbar {
-            background-color: #0f131a; /* Kad gelap */
+            background-color: #ffffff; /* Cream White Card */
             padding: 15px 25px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 1px solid rgba(0, 255, 157, 0.1); /* Garis halus hijau neon */
-        }
-        .navbar h2 {
-            margin: 0;
-            font-size: 1.4rem;
-            color: #00ff9d; /* Hijau Neon */
-        }
-        .navbar span {
-            font-size: 0.9rem;
-            color: #00d2ff; /* Biru Elektrik */
-            font-weight: bold;
-        }
-
-        /* Main Hero Card */
-        .hero-card {
-            background: linear-gradient(135deg, #111622 0%, #080b11 100%);
-            padding: 30px;
             border-radius: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            border: 1px solid rgba(0, 210, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(163, 184, 166, 0.2);
+            border: 1px solid #e1eae2;
+        }
+        .navbar h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #436850; /* Matcha Green Accent */
+        }
+        .navbar span {
+            font-size: 0.9rem;
+            color: #ff6b8b; /* Strawberry Pink Accent */
+            font-weight: bold;
+            background-color: #fff0f3;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* Main Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbf9 100%);
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(163, 184, 166, 0.15);
+            border: 1px solid #e1eae2;
         }
         .hero-main h1 {
             font-size: 3.5rem;
             margin: 0;
             display: inline-block;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            color: #2d3a2e;
         }
         .hero-main h1 span {
             font-size: 1.5rem;
             vertical-align: super;
-            color: #00d2ff;
+            color: #ff6b8b; /* Strawberry Pink Unit */
         }
         .hero-location {
             font-size: 1.1rem;
-            color: #94a3b8;
+            color: #617a65;
             margin-top: 5px;
         }
         .hero-status {
@@ -76,13 +78,12 @@
         .hero-status .condition {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #00ff9d; /* Hijau Neon */
+            color: #ff6b8b; /* Strawberry Pink Status */
             margin: 0;
-            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
         }
         .hero-status .updated-time {
             font-size: 0.85rem;
-            color: #64748b;
+            color: #8fa893;
             margin-top: 5px;
         }
 
@@ -94,24 +95,25 @@
             margin-bottom: 25px;
         }
         .stat-card {
-            background-color: #0f131a;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 14px;
+            border-radius: 16px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid #e1eae2;
+            box-shadow: 0 4px 12px rgba(163, 184, 166, 0.1);
         }
         .stat-card h3 {
             font-size: 1.6rem;
             margin: 0 0 5px 0;
-            color: #00d2ff; /* Angka biru elektrik */
+            color: #436850; /* Matcha Green values */
         }
         .stat-card p {
             font-size: 0.75rem;
-            color: #64748b;
+            color: #8fa893;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin: 0;
+            font-weight: 600;
         }
 
         /* Charts Layout */
@@ -121,15 +123,15 @@
             gap: 20px;
         }
         .chart-box {
-            background-color: #0f131a;
+            background-color: #ffffff;
             padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(163, 184, 166, 0.15);
+            border: 1px solid #e1eae2;
         }
         .chart-box h4 {
             margin: 0 0 20px 0;
-            color: #94a3b8;
+            color: #436850;
             font-size: 1rem;
             display: flex;
             align-items: center;
@@ -149,7 +151,7 @@
         <!-- Top Nav -->
         <div class="navbar">
             <h2>🏫 University Weather Research Studio</h2>
-            <span id="refresh-badge">⚡ Live Sync Enabled</span>
+            <span id="refresh-badge">🍓 Matcha Live Active</span>
         </div>
 
         <!-- Main Card -->
@@ -169,7 +171,7 @@
         <!-- Stats row -->
         <div class="stats-grid">
             <div class="stat-card">
-                <h3 id="stat-humidity">--%</h3>
+                <h3 id="stat-humidity" style="color: #ff6b8b;">--%</h3>
                 <p>Humidity</p>
             </div>
             <div class="stat-card">
@@ -181,11 +183,11 @@
                 <p>Precipitation</p>
             </div>
             <div class="stat-card">
-                <h3 style="color: #fff;">3.14° N</h3>
+                <h3 style="color: #436850;">3.14° N</h3>
                 <p>Latitude</p>
             </div>
             <div class="stat-card">
-                <h3 style="color: #fff;">101.69° E</h3>
+                <h3 style="color: #436850;">101.69° E</h3>
                 <p>Longitude</p>
             </div>
         </div>
@@ -193,11 +195,11 @@
         <!-- Charts Row -->
         <div class="charts-grid">
             <div class="chart-box">
-                <h4>📈 Temperature Analytics</h4>
+                <h4>🍓 Temperature Analytics (Strawberry Pink)</h4>
                 <canvas id="tempChart"></canvas>
             </div>
             <div class="chart-box">
-                <h4>💧 Humidity Metrics</h4>
+                <h4>🍵 Humidity Metrics (Matcha Green)</h4>
                 <canvas id="humidityChart"></canvas>
             </div>
         </div>
@@ -230,7 +232,7 @@
             const dataSuhu = data.hourly.temperature_2m.slice(0, 7);
             const dataHumidity = data.hourly.relative_humidity_2m.slice(0, 7);
 
-            // Graf 1: Hijau Neon Line Chart
+            // Graf 1: Strawberry Pink Line Chart
             if (tempChartInstance) tempChartInstance.destroy();
             tempChartInstance = new Chart(document.getElementById("tempChart"), {
                 type: "line",
@@ -239,10 +241,10 @@
                     datasets: [{
                         label: "Temperature (°C)",
                         data: dataSuhu,
-                        borderColor: "#00ff9d",
-                        backgroundColor: "rgba(0, 255, 157, 0.05)",
+                        borderColor: "#ff6b8b",
+                        backgroundColor: "rgba(255, 107, 139, 0.1)",
                         borderWidth: 3,
-                        pointBackgroundColor: "#00ff9d",
+                        pointBackgroundColor: "#ff6b8b",
                         pointRadius: 4,
                         tension: 0.4,
                         fill: true
@@ -252,13 +254,13 @@
                     responsive: true,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { grid: { color: "rgba(255,255,255,0.03)" }, ticks: { color: "#64748b" } },
-                        x: { grid: { display: false }, ticks: { color: "#64748b" } }
+                        y: { grid: { color: "#eaeee9" }, ticks: { color: "#617a65" } },
+                        x: { grid: { display: false }, ticks: { color: "#617a65" } }
                     }
                 }
             });
 
-            // Graf 2: Biru Elektrik Bar Chart
+            // Graf 2: Matcha Green Bar Chart
             if (humidityChartInstance) humidityChartInstance.destroy();
             humidityChartInstance = new Chart(document.getElementById("humidityChart"), {
                 type: "bar",
@@ -267,8 +269,8 @@
                     datasets: [{
                         label: "Relative Humidity (%)",
                         data: dataHumidity,
-                        backgroundColor: "rgba(0, 210, 255, 0.6)",
-                        borderColor: "#00d2ff",
+                        backgroundColor: "rgba(67, 104, 80, 0.7)",
+                        borderColor: "#436850",
                         borderWidth: 1,
                         borderRadius: 6
                     }]
@@ -277,8 +279,8 @@
                     responsive: true,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { grid: { color: "rgba(255,255,255,0.03)" }, ticks: { color: "#64748b" } },
-                        x: { grid: { display: false }, ticks: { color: "#64748b" } }
+                        y: { grid: { color: "#eaeee9" }, ticks: { color: "#617a65" } },
+                        x: { grid: { display: false }, ticks: { color: "#617a65" } }
                     }
                 }
             });
